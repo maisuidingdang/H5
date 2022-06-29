@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>dots</title>
+        <style>
+            body {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                grid-auto-rows: 130px;
+                place-items: center;
+            }
+            * {
+                box-sizing: border-box;
+            }
+        </style>
+        <style>
+            div {
+                border: 2px solid darkcyan;
+            }
+            .dots-1 {
+                width: 160px;
+                aspect-ratio: 4;
+                background: radial-gradient(circle closest-side, #000 90%, #0000) 0 / calc(100% / 3)
+                    100% space;
+                /* 裁切会同时裁切 border */
+                clip-path: inset(0 100% 0 0);
+                animation: d1 1s steps(4) infinite;
+            }
+            @keyframes d1 {
+                to {
+                    clip-path: inset(0 calc(-100% / 3) 0 0);
+                }
+            }
+
+            .dots-2 {
+                width: 160px;
+                aspect-ratio: 4;
+                background: radial-gradient(circle closest-side, #996 90%, #0000) 0 / calc(100% / 3)
+                    100% no-repeat;
+                animation: d2 1s steps(3) infinite;
+                /* border: 2px solid darkred; */
+            }
+            @keyframes d2 {
+                to {
+                    background-position: 150%;
+                }
+            }
+
+            .dots-3 {
+                width: 160px;
+                aspect-ratio: 2;
+                --_g: no-repeat radial-gradient(circle closest-side, #966 90%, #0000);
+                background: var(--_g) 0% 50%, var(--_g) 50% 50%, var(--_g) 100% 50%;
+                background-size: calc(100% / 3) 50%;
+                animation: d3 1s infinite linear;
+            }
+            @keyframes d3 {
+                20% {
+                    background-position: 0% 0%, 50% 50%, 100% 50%;
+                }
+                40% {
+                    background-position: 0% 100%, 50% 50%, 100% 50%;
+                }
+                60% {
+                    background-position: 0% 50%, 50% 100%, 100% 0%;
+                }
+                80% {
+                    background-position: 0% 50%, 50% 50%, 100% 100%;
+                }
+            }
+
+            .dots-4 {
+                color: #669;
+                width: 160px;
+                /* height: 40px; */
+                aspect-ratio: 4;
+                background: radial-gradient(
+                        circle closest-side at left 16px top 50%,
+                        currentColor 90%,
+                        #0000
+                    ),
+                    radial-gradient(circle closest-side, currentColor 90%, #0000),
+                    radial-gradient(
+                        circle closest-side at right 16px top 50%,
+                        currentColor 90%,
+                        #0000
+                    );
+                background-size: 100% 100%;
+                background-repeat: no-repeat;
+                /* alternate 反向 */
+                animation: d4 1s infinite alternate;
+            }
+            @keyframes d4 {
+                to {
+                    width: 30px;
+                    aspect-ratio: 1;
+                }
+            }
+
+            .dots-5 {
+                width: 40px;
+                aspect-ratio: 1;
+                border-radius: 50%;
+                animation: d5 1s infinite linear alternate;
+            }
+            @keyframes d5 {
+                0% {
+                    box-shadow: 56px 0 #669, -56px 0 #6992;
+                    background: #696;
+                }
+                33% {
+                    box-shadow: 56px 0 #669, -56px 0 #6992;
+                    background: #6962;
+                }
+                66% {
+                    box-shadow: 56px 0 #6692, -56px 0 #699;
+                    background: #6962;
+                }
+                100% {
+                    box-shadow: 56px 0 #6692, -56px 0 #699;
+                    background: #696;
+                }
+            }
+
+            .dots-6 {
+                width: 40px;
+                aspect-ratio: 1;
+                background: #066;
+                border-radius: 50%;
+                animation: d6 1s infinite linear alternate;
+            }
+            @keyframes d6 {
+                0% {
+                    box-shadow: 40px 0 #660033, -65px 0 #cc6600;
+                }
+                50% {
+                    box-shadow: 40px 0 #660033, -40px 0 #cc6600;
+                }
+                100% {
+                    box-shadow: 65px 0 #660033, -40px 0 #cc6600;
+                }
+            }
+
+            .dots-7 {
+                width: 160px;
+                aspect-ratio: 4;
+                --_g: no-repeat radial-gradient(circle closest-side, #030 90%, #0000);
+                background: var(--_g) 0% 50%, var(--_g) 50% 50%, var(--_g) 100% 50%;
+                background-size: calc(100% / 3) 100%;
+                animation: d7 1s infinite linear;
+            }
+            @keyframes d7 {
+                
+            }
+        </style>
+    </head>
+    <body>
+        <div class="dots-1"></div>
+        <div class="dots-2"></div>
+        <div class="dots-3"></div>
+        <div class="dots-4"></div>
+        <div class="dots-5"></div>
+        <div class="dots-6"></div>
+        <div class="dots-7"></div>
+        <div class="dots-8"></div>
+        <div class="dots-9"></div>
+        <div class="dots-10"></div>
+    </body>
+</html>

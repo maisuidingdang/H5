@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Single Element Loaders</title>
+        <style>
+            .loader {
+                /* 定义颜色 */
+                --c1: #f77825;
+                --c2: #d3ce3d;
+                --c3: #60b99a;
+                --c4: #554236;
+                /**/
+
+                width: 240px;
+                /* 按比例定义容器 */
+                aspect-ratio: 8/5;
+
+                --_g: no-repeat radial-gradient(#000 68%, #0000 71%);
+                /* 定义遮罩层,可定义多个 */
+                -webkit-mask: var(--_g), var(--_g), var(--_g), var(--_g);
+                -webkit-mask-size: 25% 40%;
+                /* 背景色 拼色 */
+                /* 用了上下两个渐变拼接的色块为背景色*/
+                background: conic-gradient(var(--c1) 50%, var(--c2) 0) no-repeat,
+                    conic-gradient(var(--c3) 50%, var(--c4) 0) no-repeat;
+                background-size: 200% 50%;
+                animation: back 4s infinite steps(1), load 2s infinite;
+            }
+            /* 遮罩动画 */
+            @keyframes load {
+                0% {
+                    -webkit-mask-position: 0% 0%, 50% 0%, 100% 0%;
+                }
+                16.67% {
+                    -webkit-mask-position: 0% 100%, 50% 0%, 100% 0%;
+                }
+                33.33% {
+                    -webkit-mask-position: 0% 100%, 50% 100%, 100% 0%;
+                }
+                50% {
+                    -webkit-mask-position: 0% 100%, 50% 100%, 100% 100%;
+                }
+                66.67% {
+                    -webkit-mask-position: 0% 0%, 50% 100%, 100% 100%;
+                }
+                83.33% {
+                    -webkit-mask-position: 0% 0%, 50% 0%, 100% 100%;
+                }
+                100% {
+                    -webkit-mask-position: 0% 0%, 50% 0%, 100% 0%;
+                }
+            }
+            /* 背景动画 Y轴保持不动，X轴横向移动 */
+            @keyframes back {
+                0%,
+                100% {
+                    background-position: 0% 0%, 0% 100%;
+                }
+                25% {
+                    background-position: 100% 0%, 0% 100%;
+                }
+                50% {
+                    background-position: 100% 0%, 100% 100%;
+                }
+                75% {
+                    background-position: 0% 0%, 100% 100%;
+                }
+            }
+
+            body {
+                margin: 0;
+                min-height: 100vh;
+                display: grid;
+                place-content: center;
+                /* background: #000; */
+            }
+        </style>
+        <style>
+            .loader2 {
+                margin-bottom: 20px;
+                width: 240px;
+                aspect-ratio: 8/5;
+                background: conic-gradient(red 50%, blue 0) no-repeat,
+                    conic-gradient(green 50%, purple 0) no-repeat;
+                background-size: 200% 50%;
+                animation: back 4s infinite linear;
+            }
+        </style>
+        <style>
+            .loader3 {
+                /* the colors */
+                --c1: #f77825;
+                --c2: #d3ce3d;
+                --c3: #60b99a;
+                --c4: #554236;
+                /**/
+                margin-bottom: 20px;
+                width: 240px;
+                aspect-ratio: 8/5;
+                background: conic-gradient(var(--c1) 50%, var(--c2) 0) no-repeat,
+                    conic-gradient(var(--c3) 50%, var(--c4) 0) no-repeat;
+                background-size: 200% 50%;
+                animation: back 4s infinite steps(1);
+            }
+        </style>
+        <style>
+            .loader4 {
+                margin-bottom: 20px;
+                width: 240px;
+                aspect-ratio: 8/5;
+                --_g: no-repeat radial-gradient(#000 68%, #0000 71%);
+                -webkit-mask: var(--_g), var(--_g), var(--_g);
+                -webkit-mask-size: 25% 40%;
+                background: black;
+                animation: load 2s infinite;
+            }
+        </style>
+        <style>
+            .mask {
+                width: 240px;
+                aspect-ratio: 8/5;
+                --_g: no-repeat radial-gradient(#000 68%, #0000 71%);
+                -webkit-mask: var(--_g), var(--_g), var(--_g);
+                -webkit-mask-size: 25% 40%;
+                background: black;
+                animation: load 2s infinite;
+            }
+            .back {
+                width: 240px;
+                aspect-ratio: 8/5;
+            }
+        </style>
+        <style>
+            .loader5 {
+                --c1: #bd1550;
+                --c2: #e97f02;
+                --c3: #8a9b0f;
+                --c4: #3fb8af;
+                width: 160px;
+            }
+        </style>
+        <style>
+            .loader6 {
+                margin-bottom: 20px;
+                width: 120px;
+                aspect-ratio: 1;
+                background: conic-gradient(
+                    from 45deg,
+                    #046d8b 25%,
+                    #93a42a 0 50%,
+                    #2fb8ac 0 75%,
+                    #ecbe13 0
+                ); /* the colors here */
+                -webkit-mask: radial-gradient(50% 50%, #000 96%, #0000) left/35% 35% no-repeat;
+                animation: load2 2s infinite;
+            }
+            /* 改变移动动画 */
+            @keyframes load2 {
+                25% {
+                    -webkit-mask-position: top;
+                }
+                50% {
+                    -webkit-mask-position: right;
+                }
+                75% {
+                    -webkit-mask-position: bottom;
+                }
+            }
+        </style>
+        <style>
+            /* 伪类 + background 实现移动变色小球 */
+            .loader7 {
+                margin-bottom: 20px;
+                width: 240px;
+                aspect-ratio: 1;
+                display: grid;
+                background: linear-gradient(135deg, darkred, darkseagreen);
+                clip-path: inset(10%);
+            }
+            .loader7:before {
+                content: '';
+                padding: 10%;
+                --_g: no-repeat content-box radial-gradient(50% 50%, #000 95%, #0000);
+                background: var(--_g), var(--_g), var(--_g), var(--_g), #fff;
+                background-size: 20% 20%;
+                filter: blur(5px) contrast(20);
+                mix-blend-mode: lighten;
+                animation: l 3s infinite, s 3s infinite;
+            }
+            @keyframes l {
+                0%,
+                100% {
+                    background-position: top, right, bottom, left;
+                }
+                20% {
+                    background-position: center, right, bottom, left;
+                }
+                40% {
+                    background-position: center, center, bottom, left;
+                }
+                60% {
+                    background-position: center, center, center, left;
+                }
+                80% {
+                    background-position: center, center, center, center;
+                }
+            }
+            @keyframes s {
+                0%,
+                25%,
+                90% {
+                    background-size: 20% 20%, 20% 20%, 20% 20%, 20% 20%;
+                }
+                40%,
+                45% {
+                    background-size: 30% 30%, 20% 20%, 20% 20%, 20% 20%;
+                }
+                60%,
+                65% {
+                    background-size: 40% 40%, 20% 20%, 20% 20%, 20% 20%;
+                }
+                80% {
+                    background-size: 50% 50%, 20% 20%, 20% 20%, 20% 20%;
+                }
+            }
+        </style>
+        <style>
+            /* 伪类实现，不配合background只能3组 */
+            .loader8,
+            .loader8:before,
+            .loader8:after {
+                width: 40px; /* update this to control the size */
+                aspect-ratio: 0.5;
+                display: grid;
+                background: radial-gradient(#000 68%, #0000 72%) center/100% 50% no-repeat;
+                animation: load 1.2s infinite linear calc(var(--_s, 0) * 0.4s);
+                transform: translate(calc(var(--_s, 0) * 150%));
+            }
+            .loader8:before,
+            .loader8:after {
+                content: '';
+                grid-area: 1/1;
+            }
+            .loader8:before {
+                --_s: -1;
+            }
+            .loader8:after {
+                --_s: 1;
+            }
+            @keyframes load {
+                20% {
+                    background-position: top;
+                }
+                40% {
+                    background-position: bottom;
+                }
+                60% {
+                    background-position: center;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="loader8"></div>
+        <div class="loader7"></div>
+        <div class="loader6"></div>
+        <div class="loader loader5"></div>
+        <div class="loader"></div>
+        <div>
+            <div class="mask"></div>
+            +
+            <div class="loader3"></div>
+            =
+            <div class="loader"></div>
+        </div>
+        <div class="loader4"></div>
+        <div class="loader3"></div>
+        <div class="loader2"></div>
+    </body>
+</html>
