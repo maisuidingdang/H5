@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>nintendo</title>
+    </head>
+    <body>
+        <script src="./js/me_nintentdo.js"></script>
+        <script src="./js/yolo_nintendo.js"></script>
+        <script>
+            window.onload = function () {
+                console.log('object :>> ', meData);
+                const { items } = meData;
+                console.log('item :>> ', items);
+                const kind = [];
+                const map = {};
+
+                // items.forEach((item) => {
+                //     const { ui_category } = item;
+
+                //     const isHas = kind.includes(ui_category);
+                //     if (!isHas) {
+                //         kind.push(ui_category);
+
+                //         map[ui_category] = [item];
+                //     } else {
+                //         map[ui_category].push(item);
+                //     }
+                // });
+
+                const iDontHave = yoloData.items.filter((item) => {
+                    const index = meData.items.findIndex((i) => i.label === item.label);
+
+                    if (index > -1) {
+                        return false;
+                    }
+
+                    return true;
+                });
+
+                console.log('iDontHave :>> ', iDontHave);
+
+                iDontHave.forEach((item) => {
+                    const { ui_category } = item;
+
+                    const isHas = kind.includes(ui_category);
+                    if (!isHas) {
+                        kind.push(ui_category);
+
+                        map[ui_category] = [item];
+                    } else {
+                        map[ui_category].push(item);
+                    }
+                });
+
+                console.log('kind :>> ', kind);
+                console.log('map :>> ', map);
+
+                Object.keys(map).forEach((key) => {
+                    const div = document.createElement('div');
+                    const p = document.createElement('p');
+
+                    p.innerHTML = key;
+                    div.appendChild(p);
+                    map[key].forEach((item, index) => {
+                        const p = document.createElement('p');
+
+                        p.innerHTML = ++index + ' ' + item.label;
+
+                        div.appendChild(p);
+                    });
+
+                    document.body.append(div);
+                });
+            };
+        </script>
+    </body>
+</html>
